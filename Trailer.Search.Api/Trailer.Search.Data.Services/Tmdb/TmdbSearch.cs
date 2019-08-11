@@ -16,20 +16,20 @@ namespace Trailer.Search.Data.Services.Tmdb
 {
     public class TmdbSearch : IMovieDatabaseSearch
     {
-        public TMDbClient tmbdClient { get; set; }
+        public TMDbClient TmbdClient { get; set; }
 
         private const string TrailerType = "Trailer";
         private AppSettings settings;
-        public TmdbSearch(IOptions<AppSettings> settings)
+        public TmdbSearch(IOptions<AppSettings> settings, TMDbClient tmdbClient )
         {
             this.settings = settings.Value;
-            tmbdClient = new TMDbClient(this.settings.TmdbApiKey);
+            this.TmbdClient = tmdbClient;
         }
 
         public async Task<IEnumerable<TrailerSearchResult>> Search(string movieName)
         {
 
-            SearchContainer<SearchMovie> results = tmbdClient.SearchMovieAsync(movieName).Result;
+            SearchContainer<SearchMovie> results = TmbdClient.SearchMovieAsync(movieName).Result;
 
             var trailers = new List<TrailerSearchResult>();
             foreach (var item in results.Results)
@@ -37,14 +37,13 @@ namespace Trailer.Search.Data.Services.Tmdb
                 trailers.AddRange(await FillIntrailerUrl(item));
             }
 
-
             return trailers;
 
         }
 
         private async Task<IEnumerable<TrailerSearchResult>> FillIntrailerUrl(SearchMovie item)
         {
-            var movieDetails = await tmbdClient.GetMovieAsync(item.Id, MovieMethods.Videos);
+            var movieDetails = await TmbdClient.GetMovieAsync(item.Id, MovieMethods.Videos);
             if (movieDetails.Videos.Results.Any(x => x.Type == TrailerType))
             {
 

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Google.Apis.Services;
+using Google.Apis.YouTube.v3;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using TMDbLib.Client;
 using Trailer.Search.Data.Services;
 using Trailer.Search.Data.Services.SearchEngine;
 using Trailer.Search.Data.Services.Tmdb;
@@ -33,10 +34,26 @@ namespace Trailer.Search.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
+            ConfigureDIForServices(services);
+            ConfigureDIForExternalServices(services);
+        }
+
+        private static void ConfigureDIForServices(IServiceCollection services)
+        {
             services.AddScoped(typeof(ISearchService), typeof(AgregatedSearchService));
             services.AddScoped(typeof(IVideoServiceSearch), typeof(YoutubeSearch));
             services.AddScoped(typeof(IMovieDatabaseSearch), typeof(TmdbSearch));
+        }
 
+        private void ConfigureDIForExternalServices(IServiceCollection services)
+        {
+            services.AddScoped(x => new YouTubeService(new BaseClientService.Initializer()
+            {
+                ApiKey = Configuration.GetSection("AppSettings")["YoutubeApiKey"],
+                ApplicationName = this.GetType().ToString()
+            }));
+
+            services.AddScoped(x => new TMDbClient(Configuration.GetSection("AppSettings")["TmdbApiKey"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
