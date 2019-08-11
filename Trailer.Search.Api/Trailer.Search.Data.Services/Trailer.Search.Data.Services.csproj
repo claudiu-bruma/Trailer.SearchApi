@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.40.3.1663" />
+    <PackageReference Include="TMDbLib" Version="1.4.0-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Trailer.Search.Infrastructure\Trailer.Search.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Options">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.options\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
