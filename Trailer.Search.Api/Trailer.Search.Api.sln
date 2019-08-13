@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailer.Search.Data.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailer.Search.Infrastructure", "Trailer.Search.Infrastructure\Trailer.Search.Infrastructure.csproj", "{BD75C301-2164-422D-85F0-E5B1230BA8E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailer.Search.Data.Services.UnitTests", "Trailer.Search.Data.Services.UnitTests\Trailer.Search.Data.Services.UnitTests.csproj", "{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailer.Search.Data.Services.UnitTests", "Trailer.Search.Data.Services.UnitTests\Trailer.Search.Data.Services.UnitTests.csproj", "{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailer.Search.Api.UnitTests", "Trailer.Search.Api.UnitTests\Trailer.Search.Api.UnitTests.csproj", "{C1D79967-7DEE-419F-A88E-B280F755C791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1D79967-7DEE-419F-A88E-B280F755C791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1D79967-7DEE-419F-A88E-B280F755C791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1D79967-7DEE-419F-A88E-B280F755C791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1D79967-7DEE-419F-A88E-B280F755C791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
