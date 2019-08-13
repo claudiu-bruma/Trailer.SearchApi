@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Trailer.Search.Data.Services.SearchResults;
@@ -22,7 +23,8 @@ namespace Trailer.Search.Data.Services.SearchEngine
         {
             var trailerList = new List<TrailerSearchResult>();
             trailerList.AddRange(await MovieDatabaseSearch.Search(movieName));
-            trailerList.AddRange(await VideoServiceSearch.Search(movieName));
+            var videServiceResults = await VideoServiceSearch.Search(movieName);
+            trailerList.AddRange(videServiceResults.Where(x=>trailerList.All(trailer => trailer.Url != x.Url)));
 
            return trailerList;
         }

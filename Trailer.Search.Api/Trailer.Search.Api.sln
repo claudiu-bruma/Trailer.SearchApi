@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailer.Search.Api", "Trail
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailer.Search.Data.Services", "Trailer.Search.Data.Services\Trailer.Search.Data.Services.csproj", "{25EAEA1B-6407-4049-9D47-A141EE6A3995}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailer.Search.Infrastructure", "Trailer.Search.Infrastructure\Trailer.Search.Infrastructure.csproj", "{BD75C301-2164-422D-85F0-E5B1230BA8E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailer.Search.Infrastructure", "Trailer.Search.Infrastructure\Trailer.Search.Infrastructure.csproj", "{BD75C301-2164-422D-85F0-E5B1230BA8E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailer.Search.Data.Services.UnitTests", "Trailer.Search.Data.Services.UnitTests\Trailer.Search.Data.Services.UnitTests.csproj", "{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{BD75C301-2164-422D-85F0-E5B1230BA8E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD75C301-2164-422D-85F0-E5B1230BA8E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD75C301-2164-422D-85F0-E5B1230BA8E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3C3EEE9-53C0-464F-8F6F-37850563EF2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
