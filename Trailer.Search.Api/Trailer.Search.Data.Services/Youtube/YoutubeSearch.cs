@@ -15,29 +15,26 @@ namespace Trailer.Search.Data.Services.Youtube
 {
     public class YoutubeSearch : IVideoServiceSearch
     {
-        private const string _part = "snippet";
-        private const string _videoType = "videos";
-        private const string _trailerSelectorPrefix = "trailer";
-
+        private const string part = "snippet";
+        private const string videoType = "videos";
+        private const string trailerSelectorPrefix = "trailer";
+        private const int defaultMaxNumberOfResults = 50;
         private AppSettings settings;
         public YouTubeService YouTubeService { get; set; }
-
 
         public YoutubeSearch(IOptions<AppSettings> settings , YouTubeService youTubeService)
         {
             this.settings = settings.Value;
             this.YouTubeService = youTubeService;
-  
         }
-        public async Task<IEnumerable<TrailerSearchResult>> Search(string query)
-        {
-           
 
-            var searchListRequest = YouTubeService.Search.List(_part);
-            searchListRequest.Q = $"{_trailerSelectorPrefix} {query}"; 
-            searchListRequest.Type = _videoType;
-            
-            searchListRequest.MaxResults = 50; 
+        public async Task<IEnumerable<TrailerSearchResult>> Search(string query)
+        { 
+            var searchListRequest = YouTubeService.Search.List(part);
+            searchListRequest.Q = $"{trailerSelectorPrefix} {query}";
+            searchListRequest.Type = videoType;
+
+            searchListRequest.MaxResults = defaultMaxNumberOfResults; 
             var searchListResponse = await searchListRequest.ExecuteAsync();
 
 

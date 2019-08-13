@@ -18,7 +18,7 @@ namespace Trailer.Search.Data.Services.Tmdb
     {
         public TMDbClient TmbdClient { get; set; }
 
-        private const string TrailerType = "Trailer";
+        private const string trailerType = "Trailer";
         private AppSettings settings;
         public TmdbSearch(IOptions<AppSettings> settings, TMDbClient tmdbClient )
         {
@@ -44,7 +44,7 @@ namespace Trailer.Search.Data.Services.Tmdb
         private async Task<IEnumerable<TrailerSearchResult>> FillIntrailerUrl(SearchMovie item)
         {
             var movieDetails = await TmbdClient.GetMovieAsync(item.Id, MovieMethods.Videos);
-            if (movieDetails.Videos.Results.Any(x => x.Type == TrailerType))
+            if (movieDetails.Videos.Results.Any(x => x.Type == trailerType))
             {
 
                 return movieDetails.Videos.Results.Select(x => new TrailerSearchResult()
