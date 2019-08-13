@@ -27,11 +27,7 @@ namespace Trailer.Search.Data.Services.Youtube
         {
             this.settings = settings.Value;
             this.YouTubeService = youTubeService;
-            //YouTubeService = new YouTubeService(new BaseClientService.Initializer()
-            //{
-            //    ApiKey = this.settings.YoutubeApiKey,
-            //    ApplicationName = this.GetType().ToString()
-            //});
+  
         }
         public async Task<IEnumerable<TrailerSearchResult>> Search(string query)
         {

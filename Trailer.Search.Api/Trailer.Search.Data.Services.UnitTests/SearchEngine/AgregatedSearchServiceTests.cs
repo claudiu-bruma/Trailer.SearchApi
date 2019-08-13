@@ -25,6 +25,36 @@ namespace Trailer.Search.Data.Services.UnitTests.SearchEngine
         {
             mockResultSet = new List<TrailerSearchResult>();
 
+            SetupResultSet();
+
+            this.mockRepository = new MockRepository(MockBehavior.Loose);
+
+            this.mockMovieDatabaseSearch = this.mockRepository.Create<IMovieDatabaseSearch>();
+            this.mockVideoServiceSearch = this.mockRepository.Create<IVideoServiceSearch>();
+
+
+            this.mockMovieDatabaseSearch.Setup(x => x.Search(string.Empty)).ReturnsAsync(new List<TrailerSearchResult>());
+            this.mockVideoServiceSearch.Setup(x => x.Search(string.Empty)).ReturnsAsync(new List<TrailerSearchResult>());
+
+
+            this.mockMovieDatabaseSearch.Setup(x => x.Search("test1resultmv")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test1resultmv trailer" && x.Uid.Contains("movie")));
+            this.mockVideoServiceSearch.Setup(x => x.Search("test1resultmv")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test1resultmv trailer" && x.Uid.Contains("video")));
+
+
+            this.mockMovieDatabaseSearch.Setup(x => x.Search("test2resultmv+vd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test2resultmv+vd trailer" && x.Uid.Contains("movie")));
+            this.mockVideoServiceSearch.Setup(x => x.Search("test2resultmv+vd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test2resultmv+vd trailer" && x.Uid.Contains("video")));
+
+
+            this.mockMovieDatabaseSearch.Setup(x => x.Search("test3resultvd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test3resultvd trailer" && x.Uid.Contains("movie")));
+            this.mockVideoServiceSearch.Setup(x => x.Search("test3resultvd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test3resultvd trailer" && x.Uid.Contains("video")));
+
+
+            this.mockMovieDatabaseSearch.Setup(x => x.Search("test4resultmv+vd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test4resultmv+vd trailer" && x.Uid.Contains("movie")));
+            this.mockVideoServiceSearch.Setup(x => x.Search("test4resultmv+vd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test4resultmv+vd trailer" && x.Uid.Contains("video")));
+        }
+
+        private void SetupResultSet()
+        {
             mockResultSet.Add(new TrailerSearchResult()
             {
                 ThumbnailUrl = "turl",
@@ -79,36 +109,6 @@ namespace Trailer.Search.Data.Services.UnitTests.SearchEngine
                 Url = "someurl4"
 
             });
-
-
-
-
-
-
-            this.mockRepository = new MockRepository(MockBehavior.Loose);
-
-            this.mockMovieDatabaseSearch = this.mockRepository.Create<IMovieDatabaseSearch>();
-            this.mockVideoServiceSearch = this.mockRepository.Create<IVideoServiceSearch>();
-
-
-            this.mockMovieDatabaseSearch.Setup(x => x.Search(string.Empty)).ReturnsAsync(new List<TrailerSearchResult>());
-            this.mockVideoServiceSearch.Setup(x => x.Search(string.Empty)).ReturnsAsync(new List<TrailerSearchResult>());
-
-
-            this.mockMovieDatabaseSearch.Setup(x => x.Search("test1resultmv")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test1resultmv trailer" && x.Uid.Contains("movie")));
-            this.mockVideoServiceSearch.Setup(x => x.Search("test1resultmv")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test1resultmv trailer" && x.Uid.Contains("video")));
-
-
-            this.mockMovieDatabaseSearch.Setup(x => x.Search("test2resultmv+vd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test2resultmv+vd trailer" && x.Uid.Contains("movie")));
-            this.mockVideoServiceSearch.Setup(x => x.Search("test2resultmv+vd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test2resultmv+vd trailer" && x.Uid.Contains("video")));
-
-
-            this.mockMovieDatabaseSearch.Setup(x => x.Search("test3resultvd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test3resultvd trailer" && x.Uid.Contains("movie")));
-            this.mockVideoServiceSearch.Setup(x => x.Search("test3resultvd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test3resultvd trailer" && x.Uid.Contains("video")));
-
-
-            this.mockMovieDatabaseSearch.Setup(x => x.Search("test4resultmv+vd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test4resultmv+vd trailer" && x.Uid.Contains("movie")));
-            this.mockVideoServiceSearch.Setup(x => x.Search("test4resultmv+vd")).ReturnsAsync(mockResultSet.Where(x => x.Title == "test4resultmv+vd trailer" && x.Uid.Contains("video")));
         }
 
         [TearDown]

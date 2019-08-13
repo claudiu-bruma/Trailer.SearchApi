@@ -12,15 +12,15 @@ namespace Trailer.Search.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SearchController : ControllerBase
+    public class SearchTrailersController : ControllerBase
     {
         public ISearchService SearchService { get; set; }
-        public SearchController(ISearchService searchService)
+        public SearchTrailersController(ISearchService searchService)
         {
             this.SearchService = searchService;
         }
         // GET api/values
-        [ResponseCache]
+        [ResponseCache(Duration =600)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TrailerSearchResult>>> Get(string query)
         {
